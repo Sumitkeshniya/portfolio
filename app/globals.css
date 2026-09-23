@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Night (default) */
+:root {
+  --bg: 12 18 38;
+  --panel: 20 27 51;
+  --line: 38 48 80;
+  --text: 214 219 240;
+  --muted: 128 139 178;
+  --lilac: 184 161 255;
+  --coral: 255 138 122;
+  --amber: 255 198 109;
+  --sky: 108 182 255;
+  --mint: 126 224 176;
+}
+
+/* Day */
+:root[data-theme="light"] {
+  --bg: 244 246 251;
+  --panel: 255 255 255;
+  --line: 217 222 236;
+  --text: 24 32 58;
+  --muted: 92 102 136;
+  --lilac: 110 78 214;
+  --coral: 200 66 48;
+  --amber: 158 92 0;
+  --sky: 18 108 192;
+  --mint: 12 128 80;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--text));
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: rgb(var(--sky) / 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--sky));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgb(var(--line)) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 75%);
+}
+
+.caret {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1.1em;
+  background: rgb(var(--text));
+  vertical-align: -0.2em;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
